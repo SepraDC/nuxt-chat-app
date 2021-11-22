@@ -41,6 +41,7 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/pwa',
+    '@nuxtjs/tailwindcss'
   ],
 
   pwa: {
