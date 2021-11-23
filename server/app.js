@@ -13,6 +13,7 @@ io.on("connection", (socket) => {
       ...user,
       id: socket.id,
     });
+
     return { id: socket.id };
   });
 

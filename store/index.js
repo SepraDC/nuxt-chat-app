@@ -3,7 +3,7 @@ export const state = () => ({
   messages: [],
   users: [],
   aes256:"",
-  key:""
+  key:
 });
 
 export const getters = {
