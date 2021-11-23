@@ -18,6 +18,21 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
+
+## Docker
+```bash
+# Copy .env
+cp .env.dist .env
+
+# Run docker compose
+$ docker-compose up -d --build
+
+# Import database
+$ docker exec -it mariadb bash
+$ mysql -u ${USER} -p ${DATABASE_NAME} < epsignal.sql
+
+```
+
 ## Tutorial
 
 > https://medium.com/@stfalconcom/chat-app-creation-using-vue-js-nuxt-js-node-js-socket-io-vue-socket-io-vuetify-js-technologies-5f15f0781476 p.1

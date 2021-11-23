@@ -1,11 +1,33 @@
 version: '3.8'
 services:
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_DATABASE}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks: 
+      - db_network
   nuxt:
-    container_name: nuxt
     build:
       context: .
+      dockerfile: ./docker/nuxt/Dockerfile
+    container_name: nuxt
+    depends_on:
+      - mariadb
     volumes:
-      - /app:/nuxt-app
+      - ./app:/usr/src/nuxt-app
+    ports:
+      - "3000:3000"
     environment:
-      NUXT_HOST: 172.22.240.1
-      NUXT_PORT: 3000
+      NUXT_HOST: ${NUXT_HOST}
+      NUXT_PORT: ${NUXT_PORT}
+    networks: 
+      - db_network
+
+networks:
+  db_network:

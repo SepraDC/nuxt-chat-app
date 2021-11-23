@@ -1,4 +1,4 @@
-FROM node:11.13.0-alpine
+FROM node:14.18.0-alpine
 
 # create destination directory
 RUN mkdir -p /usr/src/nuxt-app
@@ -9,7 +9,9 @@ RUN apk update && apk upgrade
 RUN apk add git
 
 # copy the app, note .dockerignore
-COPY ../app /usr/src/nuxt-app/
+COPY ./app /usr/src/nuxt-app
+
+RUN ls .
 RUN npm install
 
 # build necessary, even if no static files are needed,
@@ -25,4 +27,4 @@ ENV NUXT_HOST=0.0.0.0
 ENV NUXT_PORT=3000
 
 # start the app
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev" ]

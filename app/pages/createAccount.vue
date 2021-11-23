@@ -42,7 +42,7 @@
             <v-btn
               :disabled="!isValid"
               color="primary"
-              class="mt-3"
+              class="mt-3 btn"
               type="submit"
             >
               Create
