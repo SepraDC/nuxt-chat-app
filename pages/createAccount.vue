@@ -39,28 +39,13 @@
               label="Password"
               required
             />
-            <v-text-field
-              v-model="user.room"
-              :counter="16"
-              :rules="roomRules"
-              label="Enter the room"
-              required
-            />
             <v-btn
               :disabled="!isValid"
               color="primary"
               class="mt-3"
               type="submit"
             >
-              Submit
-            </v-btn>
-            <v-btn
-              color="primary"
-              class="mt-3"
-              type="create"
-              @click="create"
-            >
-              Create an account
+              Create
             </v-btn>
           </v-form>
         </v-card-text>
@@ -75,8 +60,8 @@ import Snackbar from "@/components/Snackbar";
 import messageDict from "@/lib/messageDict";
 
 export default {
-  name: "Home",
-  layout: "login",
+  name: "Create",
+  layout: "create",
   components: {
     Snackbar,
   },
@@ -84,18 +69,14 @@ export default {
     isValid: true,
     user: {
       name: "",
-      room: "",
+      password: "",
       typingStatus: false,
     },
     nameRules: [
       v => !!v || "Name is required",
       v => (v && v.length <= 16) || "Name must be less than 16 characters",
     ],
-    roomRules: [
-      v => !!v || "Enter the room",
-      v => (v && v.length <= 16) || "Room must be less than 16 characters",
-    ],
-     passwordRules :[
+    passwordRules :[
         v => !!v || "Password is required",
         v => (v && v.length >= 8) || "Password with 8 characters"
 
@@ -117,11 +98,8 @@ export default {
     submit() {
       if (this.$refs.form.validate()) {
         this.createUser(this.user);
-        this.$router.push("/chat");
+        this.$router.push("/");
       }
-    },
-    create(){
-        this.$router.push("/createAccount");
     },
   },
 
