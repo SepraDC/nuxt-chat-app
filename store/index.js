@@ -2,6 +2,8 @@ export const state = () => ({
   user: {},
   messages: [],
   users: [],
+  aes256:"",
+  key:""
 });
 
 export const getters = {
@@ -75,7 +77,7 @@ export const actions = {
       payload: user,
     });
 
-    commit("setUser", { id, ...user });
+    commit("setUser", { id, ...user });    
   },
   SOCKET_reconnect({ state, dispatch }) {
     const { user } = state;

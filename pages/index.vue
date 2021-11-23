@@ -15,7 +15,7 @@
         />
 
         <v-card-title>
-          <h2>Create an account</h2>
+          <h2>Login</h2>
         </v-card-title>
         <v-card-text>
           <v-form
@@ -113,10 +113,10 @@ export default {
   },
 
   methods: {
-    ...mapActions(["createUser"]),
+    ...mapActions(["authenticate"]),
     submit() {
       if (this.$refs.form.validate()) {
-        this.createUser(this.user);
+        this.authenticate(this.user);
         this.$router.push("/chat");
       }
     },

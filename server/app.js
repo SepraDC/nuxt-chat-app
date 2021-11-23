@@ -1,3 +1,5 @@
+const aesCipher = require("../utils/AESCipher")();
+
 const app = require("express")();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
@@ -11,7 +13,6 @@ io.on("connection", (socket) => {
       ...user,
       id: socket.id,
     });
-
     return { id: socket.id };
   });
 
