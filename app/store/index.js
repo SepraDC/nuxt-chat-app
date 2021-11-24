@@ -79,6 +79,9 @@ export const actions = {
 
     commit("setUser", { id, ...user });    
   },
+  async verify({commit, dispatch}, user) {
+    console.log(user);
+  },
   SOCKET_reconnect({ state, dispatch }) {
     const { user } = state;
     if (Object.values(user).length) {

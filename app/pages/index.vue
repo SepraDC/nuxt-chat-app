@@ -28,6 +28,7 @@
               v-model="user.name"
               :counter="16"
               :rules="nameRules"
+              class="text-white"
               label="Name"
               required
             />
@@ -113,10 +114,10 @@ export default {
   },
 
   methods: {
-    ...mapActions(["authenticate"]),
+    ...mapActions(["verify"]),
     submit() {
       if (this.$refs.form.validate()) {
-        this.authenticate(this.user);
+        this.verify(this.user);
         this.$router.push("/chat");
       }
     },

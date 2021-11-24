@@ -28,6 +28,7 @@ cp .env.dist .env
 $ docker-compose up -d --build
 
 # Import database
+$ docker cp docker/db/epsignal.sql mariadb:/tmp
 $ docker exec -it mariadb bash
 $ mysql -u ${USER} -p ${DATABASE_NAME} < epsignal.sql
 

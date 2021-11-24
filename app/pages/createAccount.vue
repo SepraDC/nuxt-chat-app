@@ -1,6 +1,7 @@
 <template>
   <v-row
     no-gutters
+    class="w-full h-screen bg-[#383838] flex justify-center items-center"
     align="center"
     justify="center"
   >
@@ -14,7 +15,7 @@
           :text="message"
         />
 
-        <v-card-title>
+        <v-card-title class="text-white">
           <h2>Create an account</h2>
         </v-card-title>
         <v-card-text>
@@ -25,6 +26,7 @@
             @submit.prevent="submit"
           >
             <v-text-field
+              class="text-white"
               v-model="user.name"
               :counter="16"
               :rules="nameRules"
@@ -41,7 +43,6 @@
             />
             <v-btn
               :disabled="!isValid"
-              color="primary"
               class="mt-3 btn"
               type="submit"
             >
