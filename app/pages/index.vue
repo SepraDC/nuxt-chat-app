@@ -114,10 +114,10 @@ export default {
   },
 
   methods: {
-    ...mapActions(["verifyUser"]),
+    ...mapActions(["createUser"]),
     submit() {
       if (this.$refs.form.validate()) {
-        this.verifyUser(this.user);
+        this.createUser(this.user);
         this.$router.push("/chat");
       }
     },
@@ -127,7 +127,7 @@ export default {
   },
 
   head: {
-    title: "nuxt-chat-app",
+    title: "Epsignal",
   },
 };
 </script>

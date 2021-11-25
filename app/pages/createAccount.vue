@@ -105,7 +105,7 @@ export default {
   },
 
   head: {
-    title: "nuxt-chat-app",
+    title: "Create an account",
   },
 };
 </script>

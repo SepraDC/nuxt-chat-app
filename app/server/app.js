@@ -29,9 +29,9 @@ io.on("connection", (socket) => {
   });
 
   socket.on("joinRoom", ({ name, room }) => {
-    console.log("Authenticate start");
-    app.post('/authenticate', authenticate);
-    console.log("Authenticate OK");
+    // console.log("Authenticate start");
+    // app.post('/authenticate', authenticate);
+    // console.log("Authenticate OK");
     socket.join(room);
     identities = usersDB.getUsersByRoom(room);
     console.log(identities);
