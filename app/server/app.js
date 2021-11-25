@@ -7,6 +7,16 @@ const io = require("socket.io")(server);
 const usersDB = require("../utils/users")();
 const Message = require("../models/Message")();
 
+const express = require('express');
+const cors = require('cors');
+
+const { requireAuthHeader } = require('../api/userValidation');
+const { authenticate } = require('../api/authenticate');
+const { generateVirgilJwt } = require('../api/virgilToken');
+
+app.use(cors({ origin: true, methods: 'OPTIONS,POST,GET', }));
+app.use(express.json());
+
 var identities = [];
 
 io.on("connection", (socket) => {
@@ -19,6 +29,9 @@ io.on("connection", (socket) => {
   });
 
   socket.on("joinRoom", ({ name, room }) => {
+    console.log("Authenticate start");
+    app.post('/authenticate', authenticate);
+    console.log("Authenticate OK");
     socket.join(room);
     identities = usersDB.getUsersByRoom(room);
     console.log(identities);

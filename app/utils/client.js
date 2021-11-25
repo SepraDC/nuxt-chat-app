@@ -1,3 +1,5 @@
+import { EThree, KeyPairType } from '@virgilsecurity/e3kit-browser';
+
 // This function returns a token that will be used to authenticate requests
 // to your backend.
 // This is a simplified solution without any real protection, so here you need use your
@@ -20,13 +22,15 @@ async function authenticate(identity) {
 
 // Log in as `alice`
 authenticate('alice').then(authToken => {
-    showMessage('User with identity "alice" got authToken and start initializing e3kit');
+    console.log('User with identity "alice" got authToken and start initializing e3kit');
     // E3kit will call this callback function and wait for the Promise resolve.
     // When it receives Virgil JWT it can do authorized requests to Virgil Cloud.
     // E3kit uses the identity encoded in the JWT as the current user's identity.
-		E3kit.EThree.initialize(getVirgilToken)
+		E3kit.EThree.initialize(getVirgilToken, {
+            keyPairType: KeyPairType.CURVE25519_ROUND5_ED25519_FALCON,
+          })
 				.then(e3kit => {
-					showMessage('e3kit ready for identity: ' + e3kit.identity);
+					console.log('e3kit ready for identity: ' + e3kit.identity);
 					return e3kit.register();
 				});
 				
