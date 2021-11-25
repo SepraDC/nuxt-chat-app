@@ -114,10 +114,10 @@ export default {
   },
 
   methods: {
-    ...mapActions(["verify"]),
+    ...mapActions(["verifyUser"]),
     submit() {
       if (this.$refs.form.validate()) {
-        this.verify(this.user);
+        this.verifyUser(this.user);
         this.$router.push("/chat");
       }
     },

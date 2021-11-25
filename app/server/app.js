@@ -7,6 +7,8 @@ const io = require("socket.io")(server);
 const usersDB = require("../utils/users")();
 const Message = require("../models/Message")();
 
+var identities = [];
+
 io.on("connection", (socket) => {
   socket.on("createUser", (user) => {
     usersDB.addUser({
@@ -18,6 +20,8 @@ io.on("connection", (socket) => {
 
   socket.on("joinRoom", ({ name, room }) => {
     socket.join(room);
+    identities = usersDB.getUsersByRoom(room);
+    console.log(identities);
     io.to(room).emit("updateUsers", usersDB.getUsersByRoom(room));
     socket.emit("newMessage", new Message("admin", `Hello, ${name}`));
     socket.broadcast

@@ -79,8 +79,13 @@ export const actions = {
 
     commit("setUser", { id, ...user });    
   },
-  async verify({commit, dispatch}, user) {
-    console.log(user);
+  async verifyUser({commit, dispatch}, user) {
+    const { id } = await dispatch("socketEmit", {
+      action: "verifyUser",
+      payload: user,
+    });
+
+    commit("setUser", { id, ...user });  
   },
   SOCKET_reconnect({ state, dispatch }) {
     const { user } = state;
